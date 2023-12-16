@@ -13,16 +13,15 @@
         <div>
             <label for="playerSelect">Select Player:</label>
             <select id="playerSelect" onchange="showPlayerPerformance()">
-                <option value="Ronaldo">Ronaldo</option>
-                <option value="Bruno Fernandes">Bruno Fernandes</option>
-                <!-- Add more players as needed -->
+                <!-- Options will be dynamically populated -->
             </select>
         </div>
 
-        <button onclick="addPerformance()">Add Random Performance</button>
+        <button onclick="addRandomPerformance()">Add Random Performance</button>
+        <button onclick="showAllAthletes()">Show All Athletes</button>
         
         <div id="performanceList">
-            <!-- Performance entries will be displayed here -->
+            <!-- Performance entries will be dynamically populated -->
         </div>
     </div>
     <script src="app.js"></script>
