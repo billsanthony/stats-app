@@ -9,15 +9,18 @@
 <body>
     <div id="app">
         <h1>Athlete Performance Tracker</h1>
+        
         <div>
-            <label for="athleteName">Athlete Name:</label>
-            <input type="text" id="athleteName" placeholder="Enter athlete's name">
+            <label for="playerSelect">Select Player:</label>
+            <select id="playerSelect" onchange="showPlayerPerformance()">
+                <option value="Ronaldo">Ronaldo</option>
+                <option value="Bruno Fernandes">Bruno Fernandes</option>
+                <!-- Add more players as needed -->
+            </select>
         </div>
-        <div>
-            <label for="performanceMetric">Performance Metric:</label>
-            <input type="text" id="performanceMetric" placeholder="Enter performance metric">
-        </div>
-        <button onclick="addPerformance()">Add Performance</button>
+
+        <button onclick="addPerformance()">Add Random Performance</button>
+        
         <div id="performanceList">
             <!-- Performance entries will be displayed here -->
         </div>
