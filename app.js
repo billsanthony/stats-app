@@ -27,6 +27,9 @@ function addPerformance() {
     // Clear input fields
     document.getElementById('athleteName').value = '';
     document.getElementById('performanceMetric').value = '';
+
+    // Commit to GitHub
+    commitToGitHub();
 }
 
 function displayPerformances() {
@@ -38,4 +41,11 @@ function displayPerformances() {
         performanceItem.innerHTML = `<strong>${performance.athlete}</strong> - ${performance.metric} (${performance.date})`;
         performanceList.appendChild(performanceItem);
     });
+}
+
+// Simulate a basic GitHub commit
+function commitToGitHub() {
+    // This is a placeholder for the GitHub commit functionality.
+    // In a real-world scenario, you'd use Git commands or a library like Octokit.
+    console.log('Committed to GitHub');
 }
