@@ -1,2 +1,1 @@
-# stats-app
-peformance app
+a basic web app that allows users to add and track athletes' performance. Please note that this is a simplified demonstration and doesn't include features like user authentication or data persistence.
