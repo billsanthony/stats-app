@@ -11,11 +11,6 @@ async function showNewTabPerformances() {
         const performanceTableBody = document.getElementById('performanceTableBody');
         performanceTableBody.innerHTML = '';
 
-        // Display in a div
-        const athleteDiv = document.createElement('div');
-        athleteDiv.innerHTML = `<strong>${randomAthlete.name}</strong> - ${randomAthlete.performance.metric}: ${randomAthlete.performance.value}`;
-        performanceList.appendChild(athleteDiv);
-
         // Display in a table
         const row = document.createElement('tr');
         row.innerHTML = `
