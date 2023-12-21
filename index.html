@@ -1,38 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Athlete Performance Tracker</title>
-</head>
-<body>
-    <div id="app">
-        <h1>Athlete Performance Tracker</h1>
+<!-- Add these lines inside the <body> tag -->
 
-        <label for="searchInput">Search Athlete:</label>
-        <input type="text" id="searchInput" placeholder="Enter athlete's name">
-        <button class="actionButton" onclick="searchAthlete()">Search</button>
+<div id="tabs">
+    <button class="tab" onclick="showRandomPerformances()">Random Performances</button>
+    <button class="tab" onclick="showFootballerStatistics()">Footballer Statistics</button>
+    <!-- Add more buttons for additional tabs -->
 
-        <button class="actionButton" onclick="showRandomPerformances()">Show Random Performances</button>
-
-        <div id="performanceList">
-            <!-- Performance entries will be dynamically populated -->
-        </div>
-
-        <table id="performanceTable">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Metric</th>
-                    <th>Value</th>
-                </tr>
-            </thead>
-            <tbody id="performanceTableBody">
-                <!-- Table rows will be dynamically populated -->
-            </tbody>
-        </table>
+    <div id="performanceList">
+        <!-- Data will be displayed here -->
     </div>
-    <script src="app.js"></script>
-</body>
-</html>
+
+    <table id="performanceTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Metric</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody id="performanceTableBody">
+            <!-- Table rows will be dynamically populated -->
+        </tbody>
+    </table>
+</div>
+
+<script src="app.js"></script>
