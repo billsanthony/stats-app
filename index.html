@@ -9,17 +9,13 @@
 <body>
     <div id="app">
         <h1>Athlete Performance Tracker</h1>
-        
-        <div>
-            <label for="playerSelect">Select Player:</label>
-            <select id="playerSelect" onchange="showPlayerPerformance()">
-                <!-- Options will be dynamically populated -->
-            </select>
-        </div>
 
-        <button onclick="addRandomPerformance()">Add Random Performance</button>
-        <button onclick="showAllAthletes()">Show All Athletes</button>
-        
+        <label for="searchInput">Search Athlete:</label>
+        <input type="text" id="searchInput" placeholder="Enter athlete's name">
+        <button onclick="searchAthlete()">Search</button>
+
+        <button onclick="showRandomPerformances()">Show Random Performances</button>
+
         <div id="performanceList">
             <!-- Performance entries will be dynamically populated -->
         </div>
