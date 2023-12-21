@@ -1,56 +1,17 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+// Add this API endpoint to search for an athlete by name
+app.get('/api/athletes/search', async (req, res) => {
+    const athleteName = req.query.name;
 
-const app = express();
-const PORT = process.env.PORT || 3000;
+    if (!athleteName) {
+        return res.status(400).json({ error: 'Please provide an athlete\'s name for search.' });
+    }
 
-// Connect to MongoDB (replace with your MongoDB connection string)
-mongoose.connect('mongodb://localhost:27017/athlete_app', { useNewUrlParser: true, useUnifiedTopology: true });
-
-// Define Athlete Schema
-const athleteSchema = new mongoose.Schema({
-  name: String,
-  sport: String,
-  team: String,
-  position: String,
-  performances: [{
-    metric: String,
-    value: Number,
-    date: Date,
-  }],
+    try {
+        const athletes = await Athlete.find({ name: new RegExp(athleteName, 'i') });
+        res.json(athletes);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
 
-const Athlete = mongoose.model('Athlete', athleteSchema);
-
-app.use(bodyParser.json());
-app.use(cors()); // Enable Cross-Origin Resource Sharing
-
-// API endpoint to get all athletes
-app.get('/api/athletes', async (req, res) => {
-  try {
-    const athletes = await Athlete.find();
-    res.json(athletes);
-  } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
-
-// API endpoint to add a new athlete
-app.post('/api/athletes', async (req, res) => {
-  const newAthlete = req.body;
-
-  try {
-    const createdAthlete = await Athlete.create(newAthlete);
-    res.json(createdAthlete);
-  } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
-
-// Additional API endpoints for updates, authentication, etc.
-
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+// Rest of the code...
