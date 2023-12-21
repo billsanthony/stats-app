@@ -1,5 +1,3 @@
-// Existing code...
-
 // Function to show random performances for the new tab
 async function showNewTabPerformances() {
     try {
@@ -42,4 +40,8 @@ function generateNewTabRandomAthlete() {
     };
 }
 
-// Existing code...
+// Function to get a random value based on the metric
+function getRandomValue(metric) {
+    switch (metric) {
+        case 'Gold Medals':
+     
