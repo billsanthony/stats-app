@@ -1,15 +1,24 @@
-// Function to search for an athlete by name
-async function searchAthlete() {
-    const searchInput = document.getElementById('searchInput');
-    const athleteName = searchInput.value.trim();
+// Function to generate random athlete data
+function generateRandomAthlete() {
+    const names = ['Cristiano Ronaldo', 'Lionel Messi', 'LeBron James', 'Serena Williams', 'Usain Bolt'];
+    const metrics = ['Goals', 'Assists', 'Points', 'Aces', 'Sprints'];
 
-    if (athleteName === '') {
-        alert('Please enter an athlete\'s name.');
-        return;
-    }
+    const randomName = names[Math.floor(Math.random() * names.length)];
+    const randomMetric = metrics[Math.floor(Math.random() * metrics.length)];
+    const randomValue = Math.floor(Math.random() * 10) + 1;
 
-    const response = await fetch(`http://localhost:3000/api/athletes/search?name=${encodeURIComponent(athleteName)}`);
-    const athletes = await response.json();
+    return {
+        name: randomName,
+        performance: {
+            metric: randomMetric,
+            value: randomValue
+        }
+    };
+}
+
+// Function to show random performances in tabular form
+async function showRandomPerformances() {
+    const randomAthlete = generateRandomAthlete();
 
     const performanceList = document.getElementById('performanceList');
     performanceList.innerHTML = '';
@@ -17,18 +26,17 @@ async function searchAthlete() {
     const performanceTableBody = document.getElementById('performanceTableBody');
     performanceTableBody.innerHTML = '';
 
-    athletes.forEach(athlete => {
-        // Display in a div
-        const athleteDiv = document.createElement('div');
-        athleteDiv.innerHTML = `<strong>${athlete.name}</strong> - ${athlete.performance.metric}: ${athlete.performance.value}`;
-        performanceList.appendChild(athleteDiv);
+    // Display in a div
+    const athleteDiv = document.createElement('div');
+    athleteDiv.innerHTML = `<strong>${randomAthlete.name}</strong> - ${randomAthlete.performance.metric}: ${randomAthlete.performance.value}`;
+    performanceList.appendChild(athleteDiv);
 
-        // Display in a table
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${athlete.name}</td>
-            <td>${athlete.performance.metric}</td>
-            <td>${athlete.performance.value}</td>
-        `;
-        performanceTableBody.appendChild(row);
-   
+    // Display in a table
+    const row = document.createElement('tr');
+    row.innerHTML = `
+        <td>${randomAthlete.name}</td>
+        <td>${randomAthlete.performance.metric}</td>
+        <td>${randomAthlete.performance.value}</td>
+    `;
+    performanceTableBody.appendChild(row);
+}
