@@ -1,18 +1,54 @@
-// Your existing app.js code...
+// Add this code to your app.js
 
-// Function to search for an athlete by name, sport category, and gender
-async function searchAthlete() {
-    const athleteName = document.getElementById('athleteName').value;
-    const sportCategory = document.getElementById('sportCategory').value;
-    const gender = document.getElementById('gender').value;
-
-    // Your existing logic for searching athletes goes here...
-
+// Function to fetch unique values for dropdowns from the database
+async function fetchUniqueValues() {
     try {
-        // Your logic for searching athletes based on the entered criteria...
+        const uniqueNames = await Athlete.distinct('name');
+        const uniqueSportCategories = await Athlete.distinct('sportCategory');
+        const uniqueGenders = await Athlete.distinct('gender');
 
-        // Display the results in the UI...
+        return { uniqueNames, uniqueSportCategories, uniqueGenders };
     } catch (error) {
-        console.error('Error searching for athletes:', error);
+        console.error('Error fetching unique values for dropdowns:', error);
+        throw error;
     }
 }
+
+// Function to populate dropdown options
+async function populateDropdowns() {
+    try {
+        const { uniqueNames, uniqueSportCategories, uniqueGenders } = await fetchUniqueValues();
+
+        // Populate dropdowns
+        populateDropdown('athleteNameDropdown', uniqueNames);
+        populateDropdown('sportCategoryDropdown', uniqueSportCategories);
+        populateDropdown('genderDropdown', uniqueGenders);
+    } catch (error) {
+        console.error('Error populating dropdowns:', error);
+    }
+}
+
+// Function to populate a dropdown with options
+function populateDropdown(dropdownId, options) {
+    const dropdown = document.getElementById(dropdownId);
+
+    // Clear existing options
+    dropdown.innerHTML = '';
+
+    // Add default option
+    const defaultOption = document.createElement('option');
+    defaultOption.text = 'Select';
+    defaultOption.value = '';
+    dropdown.add(defaultOption);
+
+    // Add options from the array
+    options.forEach((option) => {
+        const newOption = document.createElement('option');
+        newOption.text = option;
+        newOption.value = option;
+        dropdown.add(newOption);
+    });
+}
+
+// Call the function to populate dropdowns
+populateDropdowns();
