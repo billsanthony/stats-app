@@ -140,6 +140,9 @@ async function showFootballerStatistics() {
     }
 }
 
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+// Function to search for an athlete by name
+async function searchAthlete() {
+    const searchInput = document.getElementById('searchInput').value;
+
+    if (searchInput.trim() === '') {
+        alert('Please
